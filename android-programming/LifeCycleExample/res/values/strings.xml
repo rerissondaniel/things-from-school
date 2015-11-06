@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LifeCycleExample</string>
+    
+    <string name="on_create">OnCreate</string>
+    <string name="on_stop">OnStop</string>
+    <string name="on_start">OnStart</string>
+    <string name="on_resume">OnResume</string>
+    <string name="on_destroy">OnDestroy</string>
+    <string name="on_pause">OnPause</string>
+    
+    <string name="go_back">Voltar</string>
+    
+    <string name="on_create_content">
+        É o primeiro método a ser executado quando uma activity é criada. 
+        Assim, é responsável por carregar os layouts através de setContentView(int). 
+        Aqui também são inicializados os componentes de IU com os quais sua aplicação
+        precisará se comunicar. Pode-se observar no log desta aplicação que assim que
+        sua activity foi iniciada ela escreveu uma mensagem na saída padrão (no LogCat, verde),
+        através do método onCreated. 
+	</string>
+	
+    <string name="on_stop_content">
+		Esse método é chamado quando a activity não estará mais visível ao usuário.
+		Provavelmente, após ele será invocado onRestart() ou onDestroy(). Ele pode
+		ser chamado após onPause() em casos de pouca memória, nos quais a aplicação
+		não pode ser mantida no sistema. Ao encerrar esta aplicação pode ser encontrado
+		no log uma mensagem deixada a partir deste método.
+	</string>
+	
+    <string name="on_destroy_content">
+        Limpa tudo e morre. Esse método pode ser chamado em duas situações:
+        Alguém chamou finish() na activity, ou o sistema cansou de não ser
+        valorizado, apesar do investimento de recursos, e está temporariamente
+        matando esta instância da activity. Nunca, absolutamente NUNCA, deixe pra
+        salvar os dados de sua App aqui. A intenção deste método é simplesmente
+        liberar recursos, como threads e outras coisas associadas a uma activity.
+        Uma mensagem pode ser encontrada no log.
+    </string>
+    
+    <string name="on_start_content">
+		É chamado antes de onCreate ou depois de onRestart, ou seja, quando a activity
+		foi parada (repito: parada, não mandada para segundo plano.), mas volta a estar
+		visível ao usuário.        
+    </string>
+    
+    <string name="on_resume_content">
+		É chamado após uma activity que estava em segundo plano volta a estar em foco.
+		Pode-se observar no log desta aplicação uma mensagem deixada carinhosamento
+		pelo método onResume().
+	</string>
+    
+    <string name="on_pause_content">
+        Aqui é onde o sistema indica para a activity que o usuário está deixando-a,
+        e que ela irá para segundo plano. Portanto, é importante que neste método 
+        informações relevantes sejam commitadas. Pouco antes dessa aplicação ir para
+        segundo plano pode-se observar uma mensagem do método onPaused em seu log.
+    </string>
+    
+
+</resources>

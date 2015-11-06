@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    >
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.01"
+        android:columnCount="1" >
+
+        <Button
+            android:id="@+id/on_create"
+            android:layout_column="0"
+            android:layout_gravity="left|top"
+            android:layout_row="0"
+            android:text="@string/on_create" />
+
+        <Button
+            android:id="@+id/on_start"
+            android:layout_column="0"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_row="0"
+            android:text="@string/on_start" />
+
+        <Button
+            android:id="@+id/on_resume"
+            android:layout_column="0"
+            android:layout_gravity="right|top"
+            android:layout_row="0"
+            android:text="@string/on_resume" />
+
+        <Button
+            android:id="@+id/on_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="center"
+            android:layout_row="0"
+            android:text="@string/on_pause" />
+
+        <Button
+            android:id="@+id/on_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="left|center_vertical"
+            android:layout_row="0"
+            android:text="@string/on_stop" />
+
+        <Button
+            android:id="@+id/on_destroy"
+            android:layout_column="0"
+            android:layout_gravity="right|center_vertical"
+            android:layout_row="0"
+            android:text="@string/on_destroy" />
+
+    </GridLayout>
+
+</LinearLayout>
