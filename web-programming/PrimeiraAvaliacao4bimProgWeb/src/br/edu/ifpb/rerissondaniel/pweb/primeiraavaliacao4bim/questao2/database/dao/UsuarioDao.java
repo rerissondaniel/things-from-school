@@ -1,28 +1,25 @@
 package br.edu.ifpb.rerissondaniel.pweb.primeiraavaliacao4bim.questao2.database.dao;
 
 import org.hibernate.Query;
-import org.hibernate.Session;
 
 import br.edu.ifpb.rerissondaniel.pweb.database.util.JPA.JPAUtil;
 import br.edu.ifpb.rerissondaniel.pweb.database.util.commons.GenericDao;
 
 public class UsuarioDao extends GenericDao{
 	
-	private Session session;
-	
 	public UsuarioDao() {
-		session = JPAUtil.getSessionFactory().openSession();
+		setSession(JPAUtil.getSessionFactory().openSession());
 	}
 	
 	@Override
 	public final Query getManagedQuery() {
-		Query query = session.getNamedQuery("Usuario.getAll");
+		Query query = getSession().getNamedQuery("Usuario.getAll");
 		return query;
 	}
 
 	@Override
 	public void closeSession() {
-		session.clear();
-		session.close();
+		getSession().clear();
+		getSession().close();
 	}
 }
