@@ -1,4 +1,4 @@
-package br.edu.ifpb.rerissondaniel.pweb.database.dao;
+package br.edu.ifpb.rerissondaniel.pweb.primeiraavaliacao4bim.questao2.database.dao;
 
 import org.hibernate.Query;
 import org.hibernate.Session;

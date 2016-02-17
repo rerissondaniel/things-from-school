@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
-import br.edu.ifpb.rerissondaniel.pweb.database.dao.UsuarioDao;
+import br.edu.ifpb.rerissondaniel.pweb.primeiraavaliacao4bim.questao2.database.dao.UsuarioDao;
 import br.edu.ifpb.rerissondaniel.pweb.primeiraavaliacao4bim.questao2.entity.UsuarioEntity;
 
 @ManagedBean(name = "usuarioBean")
