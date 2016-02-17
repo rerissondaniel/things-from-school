@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<link rel="stylesheet" type="text/css" href="res/styles.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Questão 1 - Rerisson Daniel C. S. Matos</title>
+</h:head>
+<h:body>
+	<div class="content">
+		<h:form method="post">
+			<h:inputText id="campo1" type="text" value="#{nomesBean.campo1}">
+			</h:inputText>
+
+			<br />
+
+			<h:inputText id="campo2" type="text" value="#{nomesBean.campo2}">
+			</h:inputText>
+
+			<br />
+
+			<h:commandButton value="Inverter nomes"
+				action="#{nomesBean.inverteNomes}" />
+			<br />
+			<br />
+			<br />
+			<a href="index.xhtml">Voltar</a>
+		</h:form>
+	</div>
+</h:body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<link rel= "stylesheet" type = "text/css" href = "res/styles.css"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>Questão 2 - Rerisson Daniel C. S. Matos</title>
+</h:head>
+<h:body>
+	<h:dataTable var="usuario" value="#{usuarioBean.getAll()}" styleClass="table">
+		<h:column>
+			<f:facet name="header"> Id</f:facet>
+			#{usuario.id}
+		</h:column>
+		<h:column>
+			<f:facet name="header"> Nome</f:facet>
+			#{usuario.nome}
+		</h:column><h:column>
+			<f:facet name="header"> Matricula</f:facet>
+			#{usuario.matricula}
+		</h:column><h:column>
+			<f:facet name="header"> Data de Nascimento</f:facet>
+			#{usuario.dataNascimento}
+		</h:column>
+	</h:dataTable>
+	<h1><a href="index.xhtml">Voltar</a></h1>
+</h:body>
+</html>
