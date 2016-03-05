@@ -1,24 +1,25 @@
 package edittextlistener.ifpb.edu.br.edittextlistenerapp.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 import edittextlistener.ifpb.edu.br.edittextlistenerapp.R;
+import edittextlistener.ifpb.edu.br.edittextlistenerapp.adapter.UserAdapter;
 import edittextlistener.ifpb.edu.br.edittextlistenerapp.asynctask.BuscarNomeAsyncTask;
 import edittextlistener.ifpb.edu.br.edittextlistenerapp.asynctask.BuscarNomeCallBack;
+import edittextlistener.ifpb.edu.br.edittextlistenerapp.entity.User;
+import edittextlistener.ifpb.edu.br.edittextlistenerapp.entity.UserQuery;
 
 public class BuscarNomeActivity extends Activity implements TextWatcher, BuscarNomeCallBack {
 
@@ -27,7 +28,7 @@ public class BuscarNomeActivity extends Activity implements TextWatcher, BuscarN
 
     private EditText nomeEditText;
     List<String> nomes;
-    ArrayAdapter<String> adapter;
+    UserAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +36,18 @@ public class BuscarNomeActivity extends Activity implements TextWatcher, BuscarN
         // Inicialização da activity e definição do layout.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_nome);
+        ButterKnife.bind(this);
+
 
         // Recuperando o EditText e
         nomeEditText = (EditText) findViewById(R.id.nomeEditText);
         nomeEditText.addTextChangedListener(this);
 
-        ListView nomesListView = (ListView) findViewById(R.id.nomesListView);
-        nomes = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                nomes);
+        ListView lvUsers = (ListView) findViewById(R.id.nomesListView);
 
-        nomesListView.setAdapter(adapter);
+        adapter = new UserAdapter(this);
+
+        lvUsers.setAdapter(adapter);
     }
 
     @Override
@@ -57,22 +59,25 @@ public class BuscarNomeActivity extends Activity implements TextWatcher, BuscarN
     public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
         String nome = charSequence.toString();
 
-        try {
-            if (nome.length() >= TAMANHO_MINIMO_TEXTO) {
-                // JSON
-                JSONObject json = new JSONObject();
-                json.put("fullName", nome);
+        if (nome.length() >= TAMANHO_MINIMO_TEXTO) {
+            UserQuery query = new UserQuery();
+            query.setFullName(nome);
 
-                BuscarNomeAsyncTask buscarNomeAsyncTask = new BuscarNomeAsyncTask(this);
-                buscarNomeAsyncTask.execute(json);
-            }else{
-                nomes.clear();
-                adapter.notifyDataSetChanged();
-            }
-
-        } catch (JSONException e) {
-            Log.e("EditTextListener", e.getMessage());
+            BuscarNomeAsyncTask buscarNomeAsyncTask = new BuscarNomeAsyncTask(this);
+            buscarNomeAsyncTask.execute(query);
+        } else {
+            adapter.updateData(new ArrayList<User>());
         }
+    }
+
+    @OnItemClick(R.id.nomesListView)
+    protected void showUser(int position) {
+        User user = adapter.getmUsers().get(position);
+
+        Intent intent = new Intent(BuscarNomeActivity.this, UserDetailActivity.class);
+        intent.putExtra("user", user);
+
+        startActivity(intent);
     }
 
     @Override
@@ -81,14 +86,14 @@ public class BuscarNomeActivity extends Activity implements TextWatcher, BuscarN
     }
 
     @Override
-    public void backBuscarNome(List<String> names) {
-        nomes.clear();
-        nomes.addAll(names);
-        adapter.notifyDataSetChanged();
+    public void backBuscarUsuario(List<User> users) {
+        adapter.updateData(users);
     }
 
     @Override
-    public void errorBuscarNome(String error) {
+    public void errorBuscarUsuario(String error) {
+        adapter.updateData(new ArrayList<User>());
+
         Toast.makeText(this, error, Toast.LENGTH_LONG);
     }
 }

@@ -2,8 +2,6 @@ package edittextlistener.ifpb.edu.br.edittextlistenerapp.util;
 
 import android.util.Log;
 
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -37,7 +35,7 @@ public class HttpService {
         return connection;
     }
 
-    public static Response sendJSONPostResquest(JSONObject jsonObject, String service)
+    public static Response sendJSONPostResquest(String jsonData, String service)
             throws IOException {
 
         HttpURLConnection connection = null;
@@ -54,7 +52,7 @@ public class HttpService {
 
         DataOutputStream stream = new DataOutputStream(connection.getOutputStream());
 
-        stream.writeBytes(jsonObject.toString());
+        stream.writeBytes(jsonData);
 
         stream.flush();
         stream.close();

@@ -9,6 +9,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.BuscarNomeActivity" />
+
+        <activity
+            android:name=".activity.UserDetailActivity"
+            android:parentActivityName=".activity.BuscarNomeActivity" />
+
         <activity
             android:name=".activity.SplashActivity"
             android:label="@string/title_activity_splash"

@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">EditTextListenerApp</string>
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="header_list_user_id">ID</string>
+    <string name="header_list_user_name">Nome</string>
+    <string name="header_list_user_type_inscription">Tipo de Inscrição</string>
+    <string name="header_list_user_email">Email</string>
+    <string name="header_list_user_delivered">Entrega</string>
+
+    <string name="user_id">ID:</string>
+    <string name="user_name">Nome:</string>
+    <string name="user_type_inscription">Tipo de Inscrição:</string>
+    <string name="user_email">Email:</string>
+    <string name="user_delivered">Entrega:</string>
 </resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/list_item_horizontal_margin"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_id"
+        android:layout_width="@dimen/width_50dp"
+        android:layout_height="wrap_content"
+        android:text="id"
+        android:textColor="@color/textDefaultColor" />
+
+    <TextView
+        android:id="@+id/tv_type_inscription"
+        android:layout_width="@dimen/width_100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/list_item_horizontal_margin"
+        android:text="tipo_inscrição"
+        android:textColor="@color/textDefaultColor" />
+
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="@dimen/width_200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/list_item_horizontal_margin"
+        android:text="nome nome nome"
+        android:textColor="@color/textDefaultColor" />
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="@dimen/width_150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/list_item_horizontal_margin"
+        android:text="email@gmail.com"
+        android:textColor="@color/textDefaultColor" />
+
+    <CheckBox
+        android:id="@+id/cb_is_delivered"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

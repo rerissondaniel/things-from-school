@@ -3,22 +3,23 @@ package edittextlistener.ifpb.edu.br.edittextlistenerapp.asynctask;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import edittextlistener.ifpb.edu.br.edittextlistenerapp.entity.User;
+import edittextlistener.ifpb.edu.br.edittextlistenerapp.entity.UserQuery;
 import edittextlistener.ifpb.edu.br.edittextlistenerapp.util.HttpService;
 import edittextlistener.ifpb.edu.br.edittextlistenerapp.util.Response;
 
 /**
  * Created by Rhavy on 24/02/2016.
  */
-public class BuscarNomeAsyncTask extends AsyncTask<JSONObject, Void, Response> {
+public class BuscarNomeAsyncTask extends AsyncTask<UserQuery, Void, Response> {
 
     public static final String TAG = "BuscarNomeAsyncTask";
 
@@ -29,15 +30,15 @@ public class BuscarNomeAsyncTask extends AsyncTask<JSONObject, Void, Response> {
     }
 
     @Override
-    protected Response doInBackground(JSONObject... jsons) {
+    protected Response doInBackground(UserQuery... queries) {
 
 
         Response response = null;
 
-        JSONObject json = jsons[0];
+        UserQuery gsonQuery = queries[0];
 
         try {
-            response = new HttpService().sendJSONPostResquest(json, "get-byname");
+            response = HttpService.sendJSONPostResquest(new Gson().toJson(gsonQuery), "get-byname");
         } catch (IOException e) {
             Log.e("EditTextListener", e.getMessage());
         }
@@ -46,27 +47,14 @@ public class BuscarNomeAsyncTask extends AsyncTask<JSONObject, Void, Response> {
     }
 
     @Override
-    protected void onPostExecute(Response response) {
+    protected void onPostExecute(final Response response) {
         if (response.getStatusCodeHttp() > HttpURLConnection.HTTP_MULT_CHOICE) {
-            callBack.errorBuscarNome(response.getContentValue());
+            callBack.errorBuscarUsuario(response.getContentValue());
         } else {
-
-            try {
-                JSONArray jsonArray = new JSONArray(response.getContentValue());
-                List<String> names = new ArrayList<>();
-
-                for(int i = 0; i < jsonArray.length(); i++){
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    String name = jsonObject.getString("fullName");
-                    names.add(name);
-                }
-
-                callBack.backBuscarNome(names);
-
-            } catch (JSONException e) {
-                callBack.errorBuscarNome(e.getMessage());
-                Log.e(TAG, e.getMessage());
-            }
+            Gson gson = new Gson();
+            List<User> userList = new ArrayList<>(
+                    Arrays.asList(gson.fromJson(response.getContentValue(), User[].class)));
+            callBack.backBuscarUsuario(userList);
         }
     }
 }

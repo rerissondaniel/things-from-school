@@ -29,7 +29,7 @@ public class SplashActivity extends AppCompatActivity {
                 intent.setClass(SplashActivity.this, BuscarNomeActivity.class);
                 startActivity(intent);
             }
-        }, 6000);
+        }, 3000);
     }
 
 }
