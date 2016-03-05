@@ -37,7 +37,7 @@ public class UserDetailActivity extends Activity {
         ButterKnife.bind(this);
 
         User user = (User) getIntent().getParcelableExtra("user");
-        Log.i("KDSJFNKSDJ", user.toString());
+        
         tvId.setText(user.getId().toString());
         tvEmail.setText(user.getEmail());
         tvName.setText(user.getFullName());
